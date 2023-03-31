@@ -11,23 +11,15 @@ public class HousePlant implements Comparable<HousePlant>{
     private int frequencyOfWatering;
 
     public HousePlant(String name, String notes, LocalDate datePlanted, LocalDate lastWatering, int frequencyOfWatering) throws PlantException {
-        if (frequencyOfWatering < 1) {
-            throw new PlantException("Zadán chybný údaj: Parametr zálivky musí být min. 1, bylo zadáno: " + frequencyOfWatering);
-        }
-
-         if (lastWatering.isBefore(datePlanted)) {
-                throw new PlantException("Zadán chybný údaj: Datum zálivky nesmí být starší než datum vysazení rostliny. \n" +
-                        "Datum vysazení - zadáno: " + datePlanted + ",\n"+
-                        "datum poslední zálivky- zadáno: " + lastWatering + ".");
-         }
-
+        if (checkFrequencyOfWatering(frequencyOfWatering) || checkLastWatering(datePlanted,lastWatering)) {
             this.name = name;
             this.notes = notes;
             this.datePlanted = datePlanted;
             this.lastWatering = lastWatering;
             this.frequencyOfWatering = frequencyOfWatering;
-
+        }
     }
+
 
     public HousePlant(String name, LocalDate datePlanted, int frequencyOfWatering) throws PlantException {
         this(name,"",datePlanted,LocalDate.now(),frequencyOfWatering);
@@ -66,16 +58,20 @@ public class HousePlant implements Comparable<HousePlant>{
         return lastWatering;
     }
 
-    public void setLastWatering(LocalDate lastWatering) {
-        this.lastWatering = lastWatering;
+    public void setLastWatering(LocalDate lastWatering) throws PlantException{
+        if (checkLastWatering(this.datePlanted,lastWatering)) {
+            this.lastWatering = lastWatering;
+        }
     }
 
     public int getFrequencyOfWatering() {
         return frequencyOfWatering;
     }
 
-    public void setFrequencyOfWatering(int frequencyOfWatering) {
-        this.frequencyOfWatering = frequencyOfWatering;
+    public void setFrequencyOfWatering(int frequencyOfWatering) throws PlantException{
+        if(checkFrequencyOfWatering(frequencyOfWatering)) {
+            this.frequencyOfWatering = frequencyOfWatering;
+        }
     }
     ///endregion
 
@@ -108,4 +104,21 @@ public class HousePlant implements Comparable<HousePlant>{
     public String toString() {
         return ("jméno: " + name +  ", poznámka:  " + notes + ", datePlanted: " + datePlanted + ", lastWatering: " + lastWatering + ", frequencyOfWatering: " + frequencyOfWatering + "\n");
     }
+
+    public Boolean checkLastWatering(LocalDate datePlanted, LocalDate lastWatering) throws PlantException {
+        if (lastWatering.isBefore(datePlanted)) {
+            throw new PlantException("Zadán chybný údaj: Datum zálivky nesmí být starší než datum vysazení rostliny. \n" +
+                    "Datum vysazení - zadáno: " + datePlanted + ",\n" +
+                    "datum poslední zálivky- zadáno: " + lastWatering + ".");
+        }
+        return true;
+    }
+
+        public Boolean checkFrequencyOfWatering (int frequencyOfWatering) throws PlantException {
+            if (frequencyOfWatering < 1) {
+                throw new PlantException("Zadán chybný údaj: Parametr zálivky musí být min. 1, bylo zadáno: " + frequencyOfWatering);
+            }
+            return true;
+        }
+
 }

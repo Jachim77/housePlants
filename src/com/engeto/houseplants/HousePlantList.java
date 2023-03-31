@@ -3,11 +3,11 @@ package com.engeto.houseplants;
 import java.io.*;
 import java.time.DateTimeException;
 import java.time.LocalDate;
-import java.time.Month;
 import java.util.*;
 
 public class HousePlantList {
     private List<HousePlant> listOfHousePlants = new ArrayList<>();
+    private static final String MySeparator = "/t";
 
     public void addHousePlant (HousePlant housePlant) {
         listOfHousePlants.add(housePlant);
@@ -29,7 +29,7 @@ public class HousePlantList {
             while (scanner.hasNextLine()) {
                 lineNumber++;
                 line = scanner.nextLine();
-                registerHousePlants = line.split("\t");
+                registerHousePlants = (line.split("\t"));
 
                 HousePlant housePlant = new HousePlant(
                         registerHousePlants[0],
@@ -104,15 +104,17 @@ public class HousePlantList {
     }
 
     public List <LocalDate> getDatesPlantedLastMonth() {
-        List <LocalDate> dates = new ArrayList<>();
+        Set <LocalDate> dates = new HashSet<>();
         for (HousePlant plant : listOfHousePlants) {
             dates.add(plant.getDatePlanted());
         }
         List<LocalDate> dates2 = new ArrayList<>();
+        int currentYear = LocalDate.now().getYear();
         int currentMonth = LocalDate.now().getMonthValue();
         for (LocalDate date : dates) {
+            int yearPlanted = date.getYear();
             int monthPlanted = date.getMonthValue();
-            if (monthPlanted == currentMonth) {
+            if (yearPlanted == currentYear || monthPlanted == currentMonth) {
             dates2.add(date);
             }
         }
@@ -121,6 +123,13 @@ public class HousePlantList {
 
     public void removeAllHousePlant() {listOfHousePlants.clear();}
 
+    public void sort(){
+        Collections.sort(listOfHousePlants);
+    }
+
+    public List<HousePlant>getCopyOfListHouseplants() {
+        return new ArrayList<>(listOfHousePlants);
+    }
 
     }
 

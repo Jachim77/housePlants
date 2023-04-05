@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9b2b6014-1647-42bb-8878-a81277d7f77e" name="Changes" comment="Verze2">
+    <list default="true" id="9b2b6014-1647-42bb-8878-a81277d7f77e" name="Changes" comment="verze 3">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/engeto/houseplants/HousePlant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engeto/houseplants/HousePlant.java" afterDir="false" />
@@ -51,7 +51,8 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/java/data_intelliJ/skoleni_engeto/house_plants/housePlants&quot;
+    &quot;last_opened_file_path&quot;: &quot;C:/java/data_intelliJ/skoleni_engeto/house_plants/housePlants&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.Java&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -89,12 +90,20 @@
       <option name="project" value="LOCAL" />
       <updated>1679489219894</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="verze 3">
+      <created>1680264139021</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1680264139021</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Verze1" />
     <MESSAGE value="Verze2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Verze2" />
+    <MESSAGE value="verze 3" />
+    <option name="LAST_COMMIT_MESSAGE" value="verze 3" />
   </component>
 </project>

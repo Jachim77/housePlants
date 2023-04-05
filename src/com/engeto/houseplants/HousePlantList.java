@@ -7,7 +7,7 @@ import java.util.*;
 
 public class HousePlantList {
     private List<HousePlant> listOfHousePlants = new ArrayList<>();
-    private static final String MySeparator = "/t";
+    private static final String MY_SEPARATOR = "\t";
 
     public void addHousePlant (HousePlant housePlant) {
         listOfHousePlants.add(housePlant);
@@ -29,7 +29,7 @@ public class HousePlantList {
             while (scanner.hasNextLine()) {
                 lineNumber++;
                 line = scanner.nextLine();
-                registerHousePlants = (line.split("\t"));
+                registerHousePlants = (line.split(MY_SEPARATOR));
 
                 HousePlant housePlant = new HousePlant(
                         registerHousePlants[0],
@@ -74,10 +74,10 @@ public class HousePlantList {
             try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(fileName))))
             {
                 for (HousePlant plant : listOfHousePlants) {
-                    String record = plant.getName() + "\t"
-                            + plant.getNotes() + "\t"
-                            + plant.getFrequencyOfWatering() + "\t"
-                            + plant.getLastWatering() + "\t"
+                    String record = plant.getName() + MY_SEPARATOR
+                            + plant.getNotes() + MY_SEPARATOR
+                            + plant.getFrequencyOfWatering() + MY_SEPARATOR
+                            + plant.getLastWatering() + MY_SEPARATOR
                             + plant.getDatePlanted();
                     writer.println(record);
                 }
@@ -104,17 +104,17 @@ public class HousePlantList {
     }
 
     public List <LocalDate> getDatesPlantedLastMonth() {
-        Set <LocalDate> dates = new HashSet<>();
+        Set <LocalDate> datesM = new HashSet<>();
         for (HousePlant plant : listOfHousePlants) {
-            dates.add(plant.getDatePlanted());
+            datesM.add(plant.getDatePlanted());
         }
         List<LocalDate> dates2 = new ArrayList<>();
         int currentYear = LocalDate.now().getYear();
         int currentMonth = LocalDate.now().getMonthValue();
-        for (LocalDate date : dates) {
+        for (LocalDate date : datesM) {
             int yearPlanted = date.getYear();
             int monthPlanted = date.getMonthValue();
-            if (yearPlanted == currentYear || monthPlanted == currentMonth) {
+            if (yearPlanted == currentYear && monthPlanted == currentMonth) {
             dates2.add(date);
             }
         }
@@ -125,6 +125,10 @@ public class HousePlantList {
 
     public void sort(){
         Collections.sort(listOfHousePlants);
+    }
+
+    public void sort(Comparator<HousePlant> comparator) {
+        Collections.sort(listOfHousePlants,comparator);
     }
 
     public List<HousePlant>getCopyOfListHouseplants() {

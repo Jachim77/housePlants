@@ -11,7 +11,7 @@ public class HousePlant implements Comparable<HousePlant>{
     private int frequencyOfWatering;
 
     public HousePlant(String name, String notes, LocalDate datePlanted, LocalDate lastWatering, int frequencyOfWatering) throws PlantException {
-        if (checkFrequencyOfWatering(frequencyOfWatering) || checkLastWatering(datePlanted,lastWatering)) {
+        if (checkFrequencyOfWatering(frequencyOfWatering) && checkLastWatering(datePlanted,lastWatering)) {
             this.name = name;
             this.notes = notes;
             this.datePlanted = datePlanted;
